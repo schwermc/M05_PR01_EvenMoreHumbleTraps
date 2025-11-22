@@ -18,23 +18,3 @@ public class TrapBehaviour : MonoBehaviour
         trap.HandleCharacterEnter(player, trapType, damage);
     }
 }
-
-
-public class Trap
-{
-    public void HandleCharacterEnter(ICharacter player, TrapTargetType trapTargetType, int damage = 1)
-    {
-        if (player.IsPlayer)
-        {
-            if (trapTargetType == TrapTargetType.Player)
-                player.Health -= damage;
-        }
-        else
-        {
-            if (trapTargetType == TrapTargetType.Npc)
-                player.Health -= damage;
-        }
-    }
-}
-
-public enum TrapTargetType { Player, Npc }
