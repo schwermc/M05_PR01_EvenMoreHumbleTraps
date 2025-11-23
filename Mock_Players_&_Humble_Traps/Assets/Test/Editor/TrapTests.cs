@@ -38,7 +38,6 @@ public class TrapTests
         enemy.FullHealth.Returns(10);
         enemy.Health.Returns(10);
 
-
         Assert.AreEqual(enemy.FullHealth, enemy.Health);
     }
 

@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Character : MonoBehaviour, ICharacter
 {
+    public TrapTargetType trapType { get; set; }
     public int Health { get; set; }
     public int FullHealth { get; set; }
     public bool IsAlive { get; set; }
     public bool IsPlayer => isPlayer;
-    public TrapTargetType CharacterTag => characterTag;
 
     private CharacterController characterController;
 
@@ -24,6 +24,7 @@ public class Character : MonoBehaviour, ICharacter
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        trapType = characterTag;
     }
 
     void Update()
@@ -37,9 +38,9 @@ public class Character : MonoBehaviour, ICharacter
     {
         if (Health == 0)
         {
-            if (CharacterTag == TrapTargetType.Npc)
+            if (trapType == TrapTargetType.Npc)
                 IsAlive = false;
-            if (CharacterTag == TrapTargetType.Player)
+            if (trapType == TrapTargetType.Player)
                 Health = FullHealth / 2;
             return;
         }

@@ -1,4 +1,4 @@
-public class Trap
+public class Trap : ITrap
 {
     public void HandleCharacterEnter(ICharacter player, TrapTargetType trapTargetType, int damage = 1)
     {
