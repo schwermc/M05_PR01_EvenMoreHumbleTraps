@@ -81,4 +81,25 @@ public class HealTests
 
         Assert.AreNotEqual(enemy.FullHealth, enemy.Health);
     }
+    
+    [Test]
+    public void PlayerEnteringHeal_PlayerTargetedHeal_CallingHealthCheck()
+    {
+        Heal heal = new Heal();
+        ICharacter player = Substitute.For<ICharacter>();
+        player.IsPlayer.Returns(true);
+
+        heal.HandleCharacterEnter(player, TrapTargetType.Player);
+        player.Received(1).HealthCheck();
+    }
+
+    [Test]
+    public void NonPlayerEnteringHeal_NonPlayerTargetedHeal_CallingHealthCheck()
+    {
+        Heal heal = new Heal();
+        ICharacter nonPlayer = Substitute.For<ICharacter>();
+
+        heal.HandleCharacterEnter(nonPlayer, TrapTargetType.Npc);
+        nonPlayer.Received(1).HealthCheck();
+    }
 }
